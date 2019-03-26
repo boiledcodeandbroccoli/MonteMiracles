@@ -45,7 +45,7 @@ print('Amount of times we hit ANY BLUE SOURCE + 1 cantrip:          \t' + str(ro
 print('Amount of ZERO land openers:                                 \t' + str(round(count_no_lands / num_iterations,3)))
 print('Amount of ZERO cantrip opener:                               \t' + str(round(count_no_cantrips / num_iterations,3)))
 print('One cantrip given 1 valid blue source in hand:               \t' + str(round(cantrip_only / lands_only,3))) # this seems wrong. valid blue source is defined as keepable in the dark, i.e, no Tundras allowed.
-print('One cantrip given 1 of ANY blue source in hand:              \t' + str(round(cantrip_only / count_all_lands,3))) # this also seems wrong.
+print('One cantrip given 1 of ANY blue source in hand:              \t' + str(round(cantrip_only / count_all_lands,3))) # cantrip per any blue source available to the deck.
 
 #debugging
 #print('Testing print of iterations  - only islands                      \t' + str(round(count_island_only,3)))

@@ -30,10 +30,11 @@ for _ in range(num_iterations):
     count_blue += (min(draw['Islands'], 1) + min(draw['Cantrips'], 1) + min(draw['Blue_Fetches'], 1) >=2) # this calc is probably wrong. minimum of 1 BLUE SOURCE (i.e, island + duals + fetches) AND 1 cantrip
     count_no_lands += (draw['Islands'] + draw['Blue_Fetches'] + draw['Arid_Mesa'] + draw['Tundra'] == 0) # the good ol' no lander
     count_no_cantrips += (draw['Cantrips'] == 0) # use this to calculate zero cantrips in the opener
-    cantrip_only += (draw['Cantrips'] >= 1) #drawing at least 1 cantrip
+    cantrip_only += (min(draw['Cantrips'], 1) >= 1) #drawing at least 1 cantrip
     lands_only += (min(draw['Islands'], 1) + min(draw['Blue_Fetches'], 1) >= 1) # minimum of having at least 1 land in your opener but no Tundra + no Mesa
     count_all_lands += (min(draw['Islands'], 1) + min(draw['Blue_Fetches'], 1) + min(draw['Arid_Mesa'], 1) + min(draw['Tundra'], 1) >=1) #trying to use this to tally up all blue sources with a minimum of 1 appearance in the hand
     count_island_only += (draw['Islands'] >= 1)
+
 #printing results
 
 for card, number in decklist.items():
@@ -44,8 +45,8 @@ print('Amount of 4 land openers:                                    \t' + str(ro
 print('Amount of times we hit ANY BLUE SOURCE + 1 cantrip:          \t' + str(round(count_blue / num_iterations,3))) # need to check logic in the loop
 print('Amount of ZERO land openers:                                 \t' + str(round(count_no_lands / num_iterations,3)))
 print('Amount of ZERO cantrip opener:                               \t' + str(round(count_no_cantrips / num_iterations,3)))
-print('One cantrip given 1 valid blue source in hand:               \t' + str(round(cantrip_only / lands_only,3))) # Seems weird/wrong. "Valid blue source" is defined as keepable in the dark, i.e, no Tundras allowed. We only want to count Basic Island or things that are equivalent to Basic Island (blue fetches only).
-print('One cantrip given 1 of ANY blue source in hand:              \t' + str(round(cantrip_only / count_all_lands,3))) # Seems weird. cantrip per any blue source available to the deck.
+print('One cantrip given 1 valid blue source in hand:               \t' + str(round(cantrip_only / lands_only, 3))) # this seems wrong. valid blue source is defined as keepable in the dark, i.e, no Tundras allowed.
+print('One cantrip given 1 of ANY blue source in hand:              \t' + str(round(cantrip_only / count_all_lands, 3))) # this also seems wrong.
 
 #debugging
 #print('Testing print of iterations  - only islands                      \t' + str(round(count_island_only,3)))

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.6
 from collections import Counter
 import random
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 '''
 This is my paper build

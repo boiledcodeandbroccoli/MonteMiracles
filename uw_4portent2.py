@@ -4,9 +4,9 @@ import random
 import matplotlib.pyplot as plt
 
 num_iterations = 100000
-cards_seen = 7
+cards_seen = 7 #ALWAYS = 7
 
-decklist = {'Plains': 2, 'Islands': 6, 'Blue_Fetches': 8, 'Arid_Mesa': 1, 'Tundra': 2, 'Cantrips':12, 'Others': 29} #we take out karakas in this build and replace with +1 cantrip. Also -1 spell +1 cantrip for the Full Cartel of 12 Cantrips.
+decklist = {'Plains': 2, 'Islands': 6, 'Blue_Fetches': 8, 'Arid_Mesa': 1, 'Tundra': 2, 'Cantrips':12, 'Others': 29} #creating our deck.
 deck = []
 for card in decklist.keys():
     deck += [card] * decklist[card]
@@ -24,7 +24,7 @@ count_all_lands = 0 #counts all lands in the deck.
 count_island_only = 0 #for debugging purposes
 
 for _ in range(num_iterations):
-    draw = Counter(random.sample(deck, cards_seen))
+    draw = Counter(random.sample(deck, cards_seen)) #this should basically tell Python what to do in each iteration. 1) Draws a 7 card hand & see how many card types are in it. 2) random.sample(deck, cards_seen) takes a random sample of 'cards_seen' cards from 'deck'. The sample gets fed into 'Counter' to create a dictionary we use to look up how many of each card was in the sample.
     count_island_cantrip += (min(draw['Islands'], 1) + min(draw['Cantrips'], 1) >= 2) # minimum of 1 Basic Island AND at least 1 Cantrip
     count_flood += (draw['Islands'] + draw['Blue_Fetches'] + draw['Plains'] + draw['Arid_Mesa'] + draw['Tundra'] >= 4) # drawing a 4 lander in the 7
     count_blue += (min(draw['Islands'], 1) + min(draw['Cantrips'], 1) + min(draw['Blue_Fetches'], 1) >=2) # this calc is probably wrong. minimum of 1 BLUE SOURCE (i.e, island + duals + fetches) AND 1 cantrip
